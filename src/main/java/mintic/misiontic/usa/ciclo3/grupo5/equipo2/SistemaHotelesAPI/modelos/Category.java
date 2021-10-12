@@ -2,6 +2,7 @@ package mintic.misiontic.usa.ciclo3.grupo5.equipo2.SistemaHotelesAPI.modelos;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -16,11 +17,15 @@ import lombok.Data;
 @Entity
 @Table(name = "category")
 public class Category implements Serializable {
+    
+    public Category(){
+        rooms=new ArrayList<Room>();
+    }
 
     @Id
-    //@GeneratedValue
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer idCategory;
+    Integer id;
+    
     String name;
     String description;
 

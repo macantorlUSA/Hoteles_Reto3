@@ -1,4 +1,3 @@
-
 package mintic.misiontic.usa.ciclo3.grupo5.equipo2.SistemaHotelesAPI.controladores;
 
 import java.util.List;
@@ -20,19 +19,22 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/Room")
-@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT,RequestMethod.DELETE})
+@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
 public class RoomController {
+
     @GetMapping("/holaMundo")
-    public String saludad(){
-    return "Hola Mundo Tutoria";
+    public String saludad() {
+        return "Hola Mundo Tutoria";
     }
-    
+
     @Autowired
     private ServiciosRoom servicios;
+
     @GetMapping("/all")
-    public List <Room> getRoom(){
+    public List<Room> getRooms() {
         return servicios.getAll();
     }
+
     @GetMapping("/{id}")
     public Optional<Room> getRoom(@PathVariable("id") int idRoom) {
         return servicios.getRoom(idRoom);
@@ -40,9 +42,8 @@ public class RoomController {
 
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
-    public Room save(@RequestBody Room room) {
-        return servicios.save(room);
+    public void save(@RequestBody Room room) {
+        servicios.save(room);
     }
-    
-    
+
 }

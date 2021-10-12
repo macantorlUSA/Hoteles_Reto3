@@ -2,8 +2,8 @@ package mintic.misiontic.usa.ciclo3.grupo5.equipo2.SistemaHotelesAPI.controlador
 
 import java.util.List;
 import java.util.Optional;
-import mintic.misiontic.usa.ciclo3.grupo5.equipo2.SistemaHotelesAPI.modelos.Category;
-import mintic.misiontic.usa.ciclo3.grupo5.equipo2.SistemaHotelesAPI.servicios.ServiciosCategoria;
+import mintic.misiontic.usa.ciclo3.grupo5.equipo2.SistemaHotelesAPI.modelos.Reservation;
+import mintic.misiontic.usa.ciclo3.grupo5.equipo2.SistemaHotelesAPI.servicios.ServiciosReservation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -17,26 +17,26 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/Category")
+@RequestMapping("/api/Reservation")
 @CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
-public class CategoryController {
+public class ReservationController {
 
     @Autowired
-    private ServiciosCategoria servicios;
+    private ServiciosReservation servicios;
 
     @GetMapping("/all")
-    public List<Category> getCategoria() {
+    public List<Reservation> getReservations() {
         return servicios.getAll();
     }
 
     @GetMapping("/{id}")
-    public Optional<Category> getCategoria(@PathVariable("id") int idCategoria) {
-        return servicios.getCategoria(idCategoria);
+    public Optional<Reservation> getReservation(@PathVariable("id") int id) {
+        return servicios.getReservation(id);
     }
 
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
-    public void save(@RequestBody Category categoria) {
-        servicios.save(categoria);
+    public void save(@RequestBody Reservation reserva) {
+        servicios.save(reserva);
     }
 }

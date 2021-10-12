@@ -2,8 +2,10 @@ package mintic.misiontic.usa.ciclo3.grupo5.equipo2.SistemaHotelesAPI.controlador
 
 import java.util.List;
 import java.util.Optional;
-import mintic.misiontic.usa.ciclo3.grupo5.equipo2.SistemaHotelesAPI.modelos.Category;
-import mintic.misiontic.usa.ciclo3.grupo5.equipo2.SistemaHotelesAPI.servicios.ServiciosCategoria;
+import mintic.misiontic.usa.ciclo3.grupo5.equipo2.SistemaHotelesAPI.modelos.Message;
+import mintic.misiontic.usa.ciclo3.grupo5.equipo2.SistemaHotelesAPI.modelos.Reservation;
+import mintic.misiontic.usa.ciclo3.grupo5.equipo2.SistemaHotelesAPI.servicios.ServiciosMessage;
+import mintic.misiontic.usa.ciclo3.grupo5.equipo2.SistemaHotelesAPI.servicios.ServiciosReservation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -17,26 +19,26 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/Category")
+@RequestMapping("/api/Message")
 @CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
-public class CategoryController {
+public class MessageController {
 
     @Autowired
-    private ServiciosCategoria servicios;
+    private ServiciosMessage servicios;
 
     @GetMapping("/all")
-    public List<Category> getCategoria() {
+    public List<Message> getMessages() {
         return servicios.getAll();
     }
 
     @GetMapping("/{id}")
-    public Optional<Category> getCategoria(@PathVariable("id") int idCategoria) {
-        return servicios.getCategoria(idCategoria);
+    public Optional<Message> getMessage(@PathVariable("id") int id) {
+        return servicios.getMessage(id);
     }
 
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
-    public void save(@RequestBody Category categoria) {
-        servicios.save(categoria);
+    public void save(@RequestBody Message message) {
+        servicios.save(message);
     }
 }

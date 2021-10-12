@@ -1,4 +1,3 @@
-
 package mintic.misiontic.usa.ciclo3.grupo5.equipo2.SistemaHotelesAPI.servicios;
 
 import java.util.List;
@@ -10,32 +9,26 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ServiciosRoom {
+
     @Autowired
     private RoomRepositorio metodosCrud;
-    
-    public List<Room> getAll(){
-         return metodosCrud.getAll();
+
+    public List<Room> getAll() {
+        return metodosCrud.getAll();
     }
-    
-    public Optional<Room> getRoom(int idRoom){
+
+    public Optional<Room> getRoom(int idRoom) {
         return metodosCrud.getRoom(idRoom);
     }
-    
-    
-    public Room save(Room room){
-        if(room.getIdRoom()==null){
-            return metodosCrud.save(room);
-        }else{
-            Optional<Room> evt=metodosCrud.getRoom(room.getIdRoom());
-            if(evt.isEmpty()){
-            return metodosCrud.save(room);
-            }else{
-                return room;
+
+    public void save(Room room) {
+        if (room.getId() == null) {
+            metodosCrud.save(room);
+        } else {
+            Optional<Room> evt = metodosCrud.getRoom(room.getId());
+            if (evt.isEmpty()) {
+                metodosCrud.save(room);
             }
-        
-        
         }
-    
     }
-      
 }
