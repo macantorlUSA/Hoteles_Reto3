@@ -20,12 +20,7 @@ public class Reservation implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer id;
-
-    @ManyToOne
-    @JoinColumn(name = "room")
-    @JsonIgnoreProperties("reservations")
-    Room room;
+    Integer idReservation;
     
     /*@ManyToOne
     @JoinColumn(name = "client")
@@ -42,4 +37,9 @@ public class Reservation implements Serializable {
     
     @Temporal(javax.persistence.TemporalType.DATE)
     Date creationDate;
+    
+    @ManyToOne
+    @JoinColumn(name = "idRoom")
+    @JsonIgnoreProperties({"messages","reservations"})
+    Room room;
 }

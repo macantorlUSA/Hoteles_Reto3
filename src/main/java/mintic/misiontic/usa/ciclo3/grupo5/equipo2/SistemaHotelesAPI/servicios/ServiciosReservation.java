@@ -22,10 +22,10 @@ public class ServiciosReservation {
     }
 
     public void save(Reservation reservation) {
-        if (reservation.getId() == null) {
+        if (reservation.getIdReservation()== null) {
             metodosCrud.save(reservation);
         } else {
-            Optional<Reservation> evt = metodosCrud.getReservation(reservation.getId());
+            Optional<Reservation> evt = metodosCrud.getReservation(reservation.getIdReservation());
             if (evt.isEmpty()) {
                 metodosCrud.save(reservation);
             }

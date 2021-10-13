@@ -22,7 +22,6 @@ public class Room implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
-    
     String name;
     String hotel;
     Integer stars;
@@ -33,11 +32,11 @@ public class Room implements Serializable {
     @JsonIgnoreProperties("rooms")
     Category category;
     
-    @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "message")
-    @JsonIgnoreProperties("message")
+    @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "room")
+    @JsonIgnoreProperties("room")
     List<Message> messages;
     
-    @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "reservation")
-    @JsonIgnoreProperties("reservation")
+    @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "room")
+    @JsonIgnoreProperties("room")
     List<Reservation> reservations;
 }
