@@ -17,18 +17,18 @@ import lombok.Data;
 @Entity
 @Table(name = "category")
 public class Category implements Serializable {
-    
-    public Category(){
-        rooms=new ArrayList<Room>();
+
+    public Category() {
+        rooms = new ArrayList<Room>();
     }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    private String name;
-    private String description;
+    Integer id;
+    String name;
+    String description;
 
     @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "category")
     @JsonIgnoreProperties("category")
-    private List<Room> rooms; 
+    List<Room> rooms;
 }

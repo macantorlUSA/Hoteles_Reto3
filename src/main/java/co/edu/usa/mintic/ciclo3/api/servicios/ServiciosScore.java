@@ -22,7 +22,7 @@ public class ServiciosScore {
     }
 
     public void save(Score score) {
-        if (score.getIdScore()== null) {
+        if (score.getIdScore() == null) {
             metodosCrud.save(score);
         } else {
             Optional<Score> evt = metodosCrud.getScore(score.getIdScore());

@@ -1,28 +1,23 @@
 package co.edu.usa.mintic.ciclo3.api.modelos;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "score")
-public class Score implements Serializable {
+@Table(name = "admin")
+public class Admin implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer idScore;
-    String messageText;
-    Integer stars;
+    Integer id;
 
-    @OneToOne(mappedBy = "score")
-    Reservation reservation;
-
+    String name;
+    String email;
+    String password;
 }

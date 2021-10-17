@@ -22,7 +22,7 @@ public class ServiciosMessage {
     }
 
     public void save(Message message) {
-        if (message.getIdMessage()== null) {
+        if (message.getIdMessage() == null) {
             metodosCrud.save(message);
         } else {
             Optional<Message> evt = metodosCrud.getMessage(message.getIdMessage());

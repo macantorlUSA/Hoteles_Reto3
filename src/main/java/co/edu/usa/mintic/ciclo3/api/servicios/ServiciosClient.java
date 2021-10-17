@@ -22,7 +22,7 @@ public class ServiciosClient {
     }
 
     public void save(Client client) {
-        if (client.getIdClient()== null) {
+        if (client.getIdClient() == null) {
             metodosCrud.save(client);
         } else {
             Optional<Client> evt = metodosCrud.getClient(client.getIdClient());

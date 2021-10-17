@@ -1,4 +1,3 @@
-
 package co.edu.usa.mintic.ciclo3.api.repositorios;
 
 import co.edu.usa.mintic.ciclo3.api.modelos.Score;
@@ -10,18 +9,20 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class ScoreRepository {
+
     @Autowired
     private InterfaceScore crud;
-    
-    public List<Score> getAll(){
+
+    public List<Score> getAll() {
         return (List<Score>) crud.findAll();
     }
-    public Optional <Score> getScore(int id){
+
+    public Optional<Score> getScore(int id) {
         return crud.findById(id);
     }
-    
-    public Score save(Score score){
+
+    public Score save(Score score) {
         return crud.save(score);
     }
-    
+
 }

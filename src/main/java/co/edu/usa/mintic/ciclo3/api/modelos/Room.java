@@ -21,22 +21,22 @@ public class Room implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    private String name;
-    private String hotel;
-    private Integer stars;
-    private String description;
+    Integer id;
+    String name;
+    String hotel;
+    Integer stars;
+    String description;
 
     @ManyToOne()
     @JoinColumn(name = "idCategory")
     @JsonIgnoreProperties("rooms")
-    private Category category;
-    
+    Category category;
+
     @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "room")
-    @JsonIgnoreProperties({"room","client"})
-    private List<Message> messages;
-    
+    @JsonIgnoreProperties({"room", "client"})
+    List<Message> messages;
+
     @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "room")
-    @JsonIgnoreProperties({"room","client"})
-    private List<Reservation> reservations;
+    @JsonIgnoreProperties({"room", "client"})
+    List<Reservation> reservations;
 }

@@ -1,4 +1,3 @@
-
 package co.edu.usa.mintic.ciclo3.api.repositorios;
 
 import co.edu.usa.mintic.ciclo3.api.modelos.Category;
@@ -11,19 +10,20 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class CategoryRepository {
-    
-     @Autowired
+
+    @Autowired
     private InterfaceCategory crud;
-    
-    public List<Category> getAll(){
+
+    public List<Category> getAll() {
         return (List<Category>) crud.findAll();
     }
-    public Optional <Category> getCategoria(int id){
+
+    public Optional<Category> getCategoria(int id) {
         return crud.findById(id);
     }
-    
-    public Category save(Category categoria){
+
+    public Category save(Category categoria) {
         return crud.save(categoria);
     }
-    
+
 }
