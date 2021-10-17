@@ -30,7 +30,7 @@ public class RoomController {
     private ServiciosRoom servicios;
 
     @GetMapping("/all")
-    public List<Room> getRooms() {
+    public List<Room> getRoom() {
         return servicios.getAll();
     }
 

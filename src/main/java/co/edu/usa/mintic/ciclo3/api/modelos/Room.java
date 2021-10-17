@@ -22,6 +22,7 @@ public class Room implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
+
     String name;
     String hotel;
     Integer stars;

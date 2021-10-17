@@ -1,9 +1,9 @@
 package co.edu.usa.mintic.ciclo3.api.controladores;
 
-import co.edu.usa.mintic.ciclo3.api.modelos.Reservation;
-import co.edu.usa.mintic.ciclo3.api.servicios.ServiciosReservation;
 import java.util.List;
 import java.util.Optional;
+import co.edu.usa.mintic.ciclo3.api.modelos.Reservation;
+import co.edu.usa.mintic.ciclo3.api.servicios.ServiciosReservation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -25,12 +25,12 @@ public class ReservationController {
     private ServiciosReservation servicios;
 
     @GetMapping("/all")
-    public List<Reservation> getReservations() {
+    public List<Reservation> getCategoria() {
         return servicios.getAll();
     }
 
     @GetMapping("/{id}")
-    public Optional<Reservation> getReservation(@PathVariable("id") int id) {
+    public Optional<Reservation> getCategoria(@PathVariable("id") int id) {
         return servicios.getReservation(id);
     }
 
