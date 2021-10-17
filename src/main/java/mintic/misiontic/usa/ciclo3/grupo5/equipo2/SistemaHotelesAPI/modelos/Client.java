@@ -15,21 +15,28 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "category")
-public class Category implements Serializable {
+@Table(name = "client")
+public class Client implements Serializable {
 
-    public Category(){
-        rooms=new ArrayList<Room>();
+    public Client() {
+        messages = new ArrayList<>();
+        reservations = new ArrayList<>();
     }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer id;
-    
-    String name;
-    String description;
+    Integer idClient;
 
-    @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "category")
-    @JsonIgnoreProperties("category")
-    List<Room> rooms;
+    String email;
+    String password;
+    String name;
+    Integer age;
+
+    @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "client")
+    List<Message> messages;
+
+    @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "client")
+    @JsonIgnoreProperties("room")
+    List<Reservation> reservations;
+
 }

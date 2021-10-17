@@ -2,9 +2,8 @@ package mintic.misiontic.usa.ciclo3.grupo5.equipo2.SistemaHotelesAPI.controlador
 
 import java.util.List;
 import java.util.Optional;
-import mintic.misiontic.usa.ciclo3.grupo5.equipo2.SistemaHotelesAPI.modelos.Room;
-import mintic.misiontic.usa.ciclo3.grupo5.equipo2.SistemaHotelesAPI.servicios.ServiciosRoom;
-
+import mintic.misiontic.usa.ciclo3.grupo5.equipo2.SistemaHotelesAPI.modelos.Admin;
+import mintic.misiontic.usa.ciclo3.grupo5.equipo2.SistemaHotelesAPI.servicios.ServicioAdmin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -18,32 +17,26 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/Room")
+@RequestMapping("/api/Admin")
 @CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
-public class RoomController {
-
-    @GetMapping("/holaMundo")
-    public String saludad() {
-        return "Hola Mundo Tutoria";
-    }
+public class ControladorAdmin {
 
     @Autowired
-    private ServiciosRoom servicios;
+    private ServicioAdmin servicios;
 
     @GetMapping("/all")
-    public List<Room> getRoom() {
+    public List<Admin> getCategoria() {
         return servicios.getAll();
     }
 
     @GetMapping("/{id}")
-    public Optional<Room> getRoom(@PathVariable("id") int idRoom) {
-        return servicios.getRoom(idRoom);
+    public Optional<Admin> getCategoria(@PathVariable("id") int idCategoria) {
+        return servicios.getCategoria(idCategoria);
     }
 
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
-    public void save(@RequestBody Room room) {
-        servicios.save(room);
+    public void save(@RequestBody Admin categoria) {
+        servicios.save(categoria);
     }
-
 }

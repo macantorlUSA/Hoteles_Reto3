@@ -3,23 +3,23 @@ package mintic.misiontic.usa.ciclo3.grupo5.equipo2.SistemaHotelesAPI.servicios;
 import java.util.List;
 import java.util.Optional;
 import mintic.misiontic.usa.ciclo3.grupo5.equipo2.SistemaHotelesAPI.modelos.Category;
-import mintic.misiontic.usa.ciclo3.grupo5.equipo2.SistemaHotelesAPI.repositorios.CategoriaRepositorio;
+import mintic.misiontic.usa.ciclo3.grupo5.equipo2.SistemaHotelesAPI.repositorios.RepositorioCategory;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ServiciosCategoria {
+public class ServicioCategory {
 
     @Autowired
-    private CategoriaRepositorio metodosCrud;
+    private RepositorioCategory metodosCrud;
 
     public List<Category> getAll() {
         return metodosCrud.getAll();
     }
 
-    public Optional<Category> getCategoria(int idCategoria) {
-        return metodosCrud.getCategoria(idCategoria);
+    public Optional<Category> getCategoria(int id) {
+        return metodosCrud.getCategoria(id);
     }
 
     public void save(Category categoria) {

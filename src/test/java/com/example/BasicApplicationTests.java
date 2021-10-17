@@ -1,10 +1,10 @@
-package mintic.misiontic.usa.ciclo3.grupo5.equipo2.SistemaHotelesAPI;
+package com.example;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SistemaHotelesApiApplicationTests {
+class BasicApplicationTests {
 
 	@Test
 	void contextLoads() {

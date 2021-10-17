@@ -8,7 +8,7 @@
         <version>2.5.5</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>mintic.misiontic.usa.ciclo3.grupo5.equipo2</groupId>
+    <groupId>mintic.misiontic.usa.ciclo3.grupo5.equipo2.SistemaHotelesAPI</groupId>
     <artifactId>SistemaHotelesAPI</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>SistemaHotelesAPI</name>
@@ -50,6 +50,11 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>1.4.200</version>
         </dependency>
     </dependencies>
     <build>
