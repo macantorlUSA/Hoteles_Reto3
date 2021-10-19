@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  
+  <title>La Mesa Farm Hotel</title>
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,800" rel="stylesheet" /> <!-- https://fonts.google.com/specimen/Open+Sans?selection.family=Open+Sans -->
+  <link href="css/all.min.css" rel="stylesheet" /> <!-- https://fontawesome.com/ -->
+  <link href="css/bootstrap.min.css" rel="stylesheet" /> <!-- https://getbootstrap.com -->
+  <link href="css/templatemo-new-vision.css" rel="stylesheet" />
+    <style>
+        table, td {
+          border: 1px solid #333;
+          font-family: 'Roboto Mono', monospace;
+         
+          font-weight: 400;
+        }
+        
+        table {
+          width: 100%;
+          border-collapse: collapse;
+          font-family: 'Roboto Mono', monospace;
+        }
+            
+        div {
+           margin-left: 50px;
+        }
+        </style>
+</head>
+<body>
+ <div>  
+<br>   
+<h1 style=" color: #333;">  La Mesa Farm hotel</h1>
+<br/>
+<h3 style=" color: #333;">  Messages from our clients</h3>
+<br/>
+<button onclick="traerInformacion()">  Review Messages</button>
+<br/>
+<br>
+<div id="resultado">   
+</div>
+
+<fieldset style="width: 30% , color=#333;">
+    <legend style= "color:#333;"> Message information</legend>
+<div>
+    <br>
+    <input type="number" id="id" placeholder="id">
+    <input type="text" id="message" placeholder="message">
+    
+   
+</div>
+
+    
+<br>
+<button onclick="guardarInformacion()">Save!</button>
+<button onclick="editarInformacion()">Update!</button>
+</fieldset>
+<!--<div id="resultadoRoom">
+    <br>
+    <button onclick="traerInformacionRoom()">Consultar Habitaciones</button>
+</div>
+!-->
+
+</body>
+
+</html>
