@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-  <title>Hotel La Mesa - Reservas</title>
+  <title>Hotel La Mesa - Calificaciones</title>
 
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,800" rel="stylesheet" />
   <!-- https://fonts.google.com/specimen/Open+Sans?selection.family=Open+Sans -->
@@ -65,11 +65,11 @@ https://templatemo.com/tm-542-new-vision
                   <li class="nav-item">
                     <a class="nav-link tm-nav-link" href="Message.html">Mensajes</a>
                   </li>
-                  <li class="nav-item active">
-                    <a class="nav-link tm-nav-link" href="#">Reservas<span class="sr-only">(current)</span></a>
-                  </li>
                   <li class="nav-item">
-                    <a class="nav-link tm-nav-link" href="Score.html">Calificaciones</a>
+                    <a class="nav-link tm-nav-link" href="Reservation.html">Reservas</a>
+                  </li>
+                  <li class="nav-item active">
+                    <a class="nav-link tm-nav-link" href="#">Calificaciones<span class="sr-only">(current)</span></a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link tm-nav-link" href="Admin.html">Admin</a>
@@ -99,7 +99,7 @@ https://templatemo.com/tm-542-new-vision
       <section class="tm-welcome">
         <div class="row">
           <div class="col-12">
-            <h2 class="tm-section-header tm-header-floating">Reservas</h2>
+            <h2 class="tm-section-header tm-header-floating">Calificaciones</h2>
           </div>
         </div>
 
@@ -107,42 +107,11 @@ https://templatemo.com/tm-542-new-vision
           <div class="col-lg-6 mb-5 tm-contact-box">
             <div class="tm-contact-form-wrap">
               <p class="mb-4">
-                <strong>Registrar Reserva en API</strong>
+                <strong>DISPONIBLE PRÓXIMAMENTE</strong>
               </p>
-              <form id="contact-form" action="" method="post" class="tm-contact-form">
-                <div class="form-group">
-                  <label for="txtStartDate">Fecha de Inicio:</label>
-                  <input type="date" id="txtStartDate" name="contact_name"
-                    class="form-control rounded-0 border-top-0 border-right-0 border-left-0" />
-                </div>
-                <div class="form-group">
-                  <label for="txtDevolutionDate">Fecha de Devolución:</label>
-                  <input type="date" id="txtDevolutionDate" name="contact_name"
-                    class="form-control rounded-0 border-top-0 border-right-0 border-left-0" />
-                </div>
-                <div class="form-group" id="pnlSelClient">
-                </div>
-                <div class="form-group" id="pnlSelRoom">
-                </div>
-                <div class="form-group mb-0">
-                  <button id="btnAgregar" onclick="agregarReserva();"
-                    class="btn rounded-0 d-block ml-auto tm-btn-primary">
-                    Agregar Reserva
-                  </button>
-                </div>
-              </form>
             </div>
           </div>
-          <div class="col-lg-6 mb-5 tm-contact-box">
-            <div class="tm-double-border-1 tm-border-gray">
-              <div class="tm-double-border-2 tm-border-gray tm-box-pad">
-                <p class="mb-4">
-                  <strong>Datos extraídos desde el Reservation API</strong>
-                </p>
-                <div id="pnlListaReservation"></div>
-              </div>
-            </div>
-          </div>
+
         </div>
 
       </section>
@@ -162,8 +131,6 @@ https://templatemo.com/tm-542-new-vision
   <script src="js/bootstrap.min.js"></script>
   <script src="js/templatemo-script.js"></script>
   <script src="js/misFunciones.js"></script>
-
-  <script>consultarReservas();consultarClientesLista();consultarHabitacionesLista();</script>
 </body>
 
 </html>
