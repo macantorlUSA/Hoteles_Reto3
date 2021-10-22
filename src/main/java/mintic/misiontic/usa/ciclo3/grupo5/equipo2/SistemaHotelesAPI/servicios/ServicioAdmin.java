@@ -18,18 +18,48 @@ public class ServicioAdmin {
         return metodosCrud.getAll();
     }
 
-    public Optional<Admin> getCategoria(int id) {
-        return metodosCrud.getCategoria(id);
+    public Optional<Admin> getAdmin(int id) {
+        return metodosCrud.getAdmin(id);
     }
 
-    public void save(Admin categoria) {
-        if (categoria.getId() == null) {
-            metodosCrud.save(categoria);
+    public void save(Admin admin) {
+        if (admin.getId() == null) {
+            metodosCrud.save(admin);
         } else {
-            Optional<Admin> evt = metodosCrud.getCategoria(categoria.getId());
+            Optional<Admin> evt = metodosCrud.getAdmin(admin.getId());
             if (evt.isEmpty()) {
-                metodosCrud.save(categoria);
+                metodosCrud.save(admin);
             }
         }
     }
+    
+    public void update(Admin admin){
+        if(admin.getId() != null){
+            Optional<Admin> catcher = metodosCrud.getAdmin(admin.getId());
+            
+            if(!catcher.isEmpty()){
+                if(admin.getName()!= null){
+                    catcher.get().setName(admin.getName());
+                }
+                if(admin.getEmail() != null){
+                    catcher.get().setEmail(admin.getEmail());
+                }
+                if(admin.getPassword()!= null){
+                    catcher.get().setPassword(admin.getPassword());
+                }
+                
+                metodosCrud.save(catcher.get());  //method is called to save when the updating is finished.
+            }
+        }
+    }
+    
+    public boolean delete(int id){
+        Optional<Admin> catcher= metodosCrud.getAdmin(id);  //metodosCrud atributo del repositorio Admin, getAdmin obtiene el objeto Admin de id=id
+        if(!catcher.isEmpty()){
+            metodosCrud.delete(catcher.get());
+            return true;
+        }
+        return false;
+    }
+    
 }

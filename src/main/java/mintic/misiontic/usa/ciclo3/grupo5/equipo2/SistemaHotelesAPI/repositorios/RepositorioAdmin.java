@@ -18,12 +18,16 @@ public class RepositorioAdmin {
         return (List<Admin>) crud.findAll();
     }
 
-    public Optional<Admin> getCategoria(int id) {
+    public Optional<Admin> getAdmin(int id) {
         return crud.findById(id);
     }
 
-    public Admin save(Admin categoria) {
-        return crud.save(categoria);
+    public Admin save(Admin admin) {
+        return crud.save(admin);
+    }
+    
+    public void delete (Admin admin){
+        crud.delete(admin);
     }
 
 }
