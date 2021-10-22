@@ -1,8 +1,8 @@
 
-package co.edu.usa.mintic.ciclo3.api.repositorios;
+package mintic.misiontic.usa.ciclo3.grupo5.equipo2.SistemaHotelesAPI.repositorios;
 
-import co.edu.usa.mintic.ciclo3.api.modelos.Client;
-import co.edu.usa.mintic.ciclo3.api.repositorios.crud.InterfaceClient;
+import mintic.misiontic.usa.ciclo3.grupo5.equipo2.SistemaHotelesAPI.modelos.Client;
+import mintic.misiontic.usa.ciclo3.grupo5.equipo2.SistemaHotelesAPI.repositorios.crud.InterfaceClient;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;

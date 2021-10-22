@@ -1,8 +1,8 @@
 
-package co.edu.usa.mintic.ciclo3.api.repositorios;
+package mintic.misiontic.usa.ciclo3.grupo5.equipo2.SistemaHotelesAPI.repositorios;
 
-import co.edu.usa.mintic.ciclo3.api.modelos.Category;
-import co.edu.usa.mintic.ciclo3.api.repositorios.crud.InterfaceCategory;
+import mintic.misiontic.usa.ciclo3.grupo5.equipo2.SistemaHotelesAPI.modelos.Category;
+import mintic.misiontic.usa.ciclo3.grupo5.equipo2.SistemaHotelesAPI.repositorios.crud.InterfaceCategory;
 import java.util.List;
 import java.util.Optional;
 

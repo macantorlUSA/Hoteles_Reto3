@@ -1,7 +1,7 @@
-package co.edu.usa.mintic.ciclo3.api.controladores;
+package mintic.misiontic.usa.ciclo3.grupo5.equipo2.SistemaHotelesAPI.controladores;
 
-import co.edu.usa.mintic.ciclo3.api.modelos.Category;
-import co.edu.usa.mintic.ciclo3.api.servicios.ServiciosCategory;
+import mintic.misiontic.usa.ciclo3.grupo5.equipo2.SistemaHotelesAPI.modelos.Category;
+import mintic.misiontic.usa.ciclo3.grupo5.equipo2.SistemaHotelesAPI.servicios.ServiciosCategory;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
