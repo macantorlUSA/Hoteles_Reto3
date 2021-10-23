@@ -18,12 +18,11 @@ public class RepositorioScore {
         return (List<Score>) crud.findAll();
     }
 
-    public Optional<Score> getCategoria(int id) {
+    public Optional<Score> getScore(int id) {
         return crud.findById(id);
     }
 
-    public Score save(Score categoria) {
-        return crud.save(categoria);
+    public Score save(Score score) {
+        return crud.save(score);
     }
-
 }

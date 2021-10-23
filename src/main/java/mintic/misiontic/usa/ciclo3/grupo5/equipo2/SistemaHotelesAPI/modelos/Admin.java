@@ -20,4 +20,6 @@ public class Admin implements Serializable {
     String name;
     String email;
     String password;
+    
+    
 }

@@ -18,12 +18,15 @@ public class RepositorioMessage {
         return (List<Message>) crud.findAll();
     }
 
-    public Optional<Message> getCategoria(int id) {
+    public Optional<Message> getMessage(int id) {
         return crud.findById(id);
     }
 
-    public Message save(Message categoria) {
-        return crud.save(categoria);
+    public Message save(Message message) {
+        return crud.save(message);
     }
 
+    public void delete(Message message) {
+        crud.delete(message);
+    }
 }

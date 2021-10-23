@@ -18,7 +18,7 @@ public class RepositorioRoom {
         return (List<Room>) crud.findAll();
     }
 
-    public Optional<Room> getCategoria(int id) {
+    public Optional<Room> getRoom(int id) {
         return crud.findById(id);
     }
 
@@ -26,4 +26,7 @@ public class RepositorioRoom {
         return crud.save(categoria);
     }
 
+    public void delete(Room message) {
+        crud.delete(message);
+    }
 }

@@ -18,7 +18,7 @@ public class RepositorioClient {
         return (List<Client>) crud.findAll();
     }
 
-    public Optional<Client> getCategoria(int id) {
+    public Optional<Client> getClient(int id) {
         return crud.findById(id);
     }
 
@@ -26,4 +26,7 @@ public class RepositorioClient {
         return crud.save(categoria);
     }
 
+    public void delete(Client category) {
+        crud.delete(category);
+    }
 }

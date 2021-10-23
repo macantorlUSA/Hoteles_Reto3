@@ -18,18 +18,42 @@ public class ServicioReservation {
         return metodosCrud.getAll();
     }
 
-    public Optional<Reservation> getCategoria(int id) {
-        return metodosCrud.getCategoria(id);
+    public Optional<Reservation> getReservation(int id) {
+        return metodosCrud.getReservation(id);
     }
 
     public void save(Reservation categoria) {
-        if (categoria.getIdReservation()== null) {
+        if (categoria.getIdReservation() == null) {
             metodosCrud.save(categoria);
         } else {
-            Optional<Reservation> evt = metodosCrud.getCategoria(categoria.getIdReservation());
+            Optional<Reservation> evt = metodosCrud.getReservation(categoria.getIdReservation());
             if (evt.isEmpty()) {
                 metodosCrud.save(categoria);
             }
         }
+    }
+
+    public void update(Reservation reservation) {
+        if (reservation.getIdReservation() != null) {
+            Optional<Reservation> obtener = metodosCrud.getReservation(reservation.getIdReservation());
+            if (!obtener.isEmpty()) {
+                if (reservation.getStartDate() != null) {
+                    obtener.get().setStartDate(reservation.getStartDate());
+                }
+                if (reservation.getDevolutionDate() != null) {
+                    obtener.get().setDevolutionDate(reservation.getDevolutionDate());
+                }
+                metodosCrud.save(obtener.get());
+            }
+        }
+    }
+
+    public boolean delete(int id) {
+        Optional<Reservation> obtener = metodosCrud.getReservation(id);
+        if (!obtener.isEmpty()) {
+            metodosCrud.delete(obtener.get());
+            return true;
+        }
+        return false;
     }
 }

@@ -18,17 +18,35 @@ public class ServicioScore {
         return metodosCrud.getAll();
     }
 
-    public Optional<Score> getCategoria(int id) {
-        return metodosCrud.getCategoria(id);
+    public Optional<Score> getScore(int id) {
+        return metodosCrud.getScore(id);
     }
 
-    public void save(Score categoria) {
-        if (categoria.getId() == null) {
-            metodosCrud.save(categoria);
+    public void save(Score score) {
+        if (score.getId() == null) {
+            metodosCrud.save(score);
         } else {
-            Optional<Score> evt = metodosCrud.getCategoria(categoria.getId());
+            Optional<Score> evt = metodosCrud.getScore(score.getId());
             if (evt.isEmpty()) {
-                metodosCrud.save(categoria);
+                metodosCrud.save(score);
+            }
+        }
+    }
+
+    public void update(Score score) {
+        if (score.getId() != null) {
+            Optional<Score> catcher = metodosCrud.getScore(score.getId());
+            if (!catcher.isEmpty()) {
+                if (score.getValue() != null) {
+                    catcher.get().setValue(score.getValue());
+                }
+                if (score.getMessage() != null) {
+                    catcher.get().setMessage(score.getMessage());
+                }
+                if (score.getHotel() != null) {
+                    catcher.get().setHotel(score.getHotel());
+                }
+                metodosCrud.save(catcher.get());
             }
         }
     }

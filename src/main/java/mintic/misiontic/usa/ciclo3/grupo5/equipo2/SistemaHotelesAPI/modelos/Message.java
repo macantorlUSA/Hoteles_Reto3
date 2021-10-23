@@ -1,3 +1,7 @@
+
+
+
+
 package mintic.misiontic.usa.ciclo3.grupo5.equipo2.SistemaHotelesAPI.modelos;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -31,4 +35,6 @@ public class Message implements Serializable {
     @JoinColumn(name = "clientID")
     @JsonIgnoreProperties({"reservations","messages"})
     Client client;
+    
+    
 }
