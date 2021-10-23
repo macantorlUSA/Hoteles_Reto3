@@ -32,27 +32,25 @@ public class ServicioMessage {
             }
         }
     }
-    
-    public void update(Message message){
-        if(message.getIdMessage() != null){
+
+    public void update(Message message) {
+        if (message.getIdMessage() != null) {
             Optional<Message> catcher = metodosCrud.getMessage(message.getIdMessage());
-            
-            if(!catcher.isEmpty()){
-                if(message.getIdMessage()!= null){
+            if (!catcher.isEmpty()) {
+                if (message.getIdMessage() != null) {
                     catcher.get().setIdMessage(message.getIdMessage());
                 }
-                if(message.getMessageText() != null){
+                if (message.getMessageText() != null) {
                     catcher.get().setMessageText(message.getMessageText());
                 }
-                
-                metodosCrud.save(catcher.get());  //method is called to save when the updating is finished.
+                metodosCrud.save(catcher.get());
             }
         }
     }
-    
-    public boolean delete(int id){
-        Optional<Message> catcher= metodosCrud.getMessage(id);  //metodosCrud atributo del repositorio Message, getMessage obtiene el objeto Message de id=id
-        if(!catcher.isEmpty()){
+
+    public boolean delete(int id) {
+        Optional<Message> catcher = metodosCrud.getMessage(id);
+        if (!catcher.isEmpty()) {
             metodosCrud.delete(catcher.get());
             return true;
         }

@@ -32,23 +32,21 @@ public class ServicioScore {
             }
         }
     }
-    
-    public void update(Score score){
-        if(score.getId() != null){
+
+    public void update(Score score) {
+        if (score.getId() != null) {
             Optional<Score> catcher = metodosCrud.getScore(score.getId());
-            
-            if(!catcher.isEmpty()){
-                if(score.getValue()!= null){
+            if (!catcher.isEmpty()) {
+                if (score.getValue() != null) {
                     catcher.get().setValue(score.getValue());
                 }
-                if(score.getMessage() != null){
+                if (score.getMessage() != null) {
                     catcher.get().setMessage(score.getMessage());
                 }
-                if(score.getHotel()!= null){
+                if (score.getHotel() != null) {
                     catcher.get().setHotel(score.getHotel());
                 }
-                
-                metodosCrud.save(catcher.get());  //method is called to save when the updating is finished.
+                metodosCrud.save(catcher.get());
             }
         }
     }

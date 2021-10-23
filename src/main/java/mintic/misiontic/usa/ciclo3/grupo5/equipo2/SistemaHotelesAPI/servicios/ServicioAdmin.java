@@ -32,34 +32,31 @@ public class ServicioAdmin {
             }
         }
     }
-    
-    public void update(Admin admin){
-        if(admin.getId() != null){
+
+    public void update(Admin admin) {
+        if (admin.getId() != null) {
             Optional<Admin> catcher = metodosCrud.getAdmin(admin.getId());
-            
-            if(!catcher.isEmpty()){
-                if(admin.getName()!= null){
+            if (!catcher.isEmpty()) {
+                if (admin.getName() != null) {
                     catcher.get().setName(admin.getName());
                 }
-                if(admin.getEmail() != null){
+                if (admin.getEmail() != null) {
                     catcher.get().setEmail(admin.getEmail());
                 }
-                if(admin.getPassword()!= null){
+                if (admin.getPassword() != null) {
                     catcher.get().setPassword(admin.getPassword());
                 }
-                
-                metodosCrud.save(catcher.get());  //method is called to save when the updating is finished.
+                metodosCrud.save(catcher.get());
             }
         }
     }
-    
-    public boolean delete(int id){
-        Optional<Admin> catcher= metodosCrud.getAdmin(id);  //metodosCrud atributo del repositorio Admin, getAdmin obtiene el objeto Admin de id=id
-        if(!catcher.isEmpty()){
+
+    public boolean delete(int id) {
+        Optional<Admin> catcher = metodosCrud.getAdmin(id);  //metodosCrud atributo del repositorio Admin, getAdmin obtiene el objeto Admin de id=id
+        if (!catcher.isEmpty()) {
             metodosCrud.delete(catcher.get());
             return true;
         }
         return false;
     }
-    
 }

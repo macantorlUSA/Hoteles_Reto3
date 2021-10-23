@@ -40,10 +40,10 @@ public class ControladorScore {
     public void save(@RequestBody Score categoria) {
         servicios.save(categoria);
     }
-    
+
     @PutMapping("/update")
-    @ResponseStatus(HttpStatus.CREATED)  //Created inicializa la base de datos por cada ejecución del programa
-    public void update(@RequestBody Score score){
+    @ResponseStatus(HttpStatus.CREATED)
+    public void update(@RequestBody Score score) {
         servicios.update(score);
     }
 }

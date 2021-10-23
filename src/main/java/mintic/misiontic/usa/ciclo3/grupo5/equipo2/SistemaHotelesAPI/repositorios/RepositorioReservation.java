@@ -18,7 +18,7 @@ public class RepositorioReservation {
         return (List<Reservation>) crud.findAll();
     }
 
-    public Optional<Reservation> getCategoria(int id) {
+    public Optional<Reservation> getReservation(int id) {
         return crud.findById(id);
     }
 
@@ -26,4 +26,7 @@ public class RepositorioReservation {
         return crud.save(categoria);
     }
 
+    public void delete(Reservation message) {
+        crud.delete(message);
+    }
 }

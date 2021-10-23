@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-
 @RestController
 @RequestMapping("/api/Admin")
 @CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
@@ -43,16 +42,16 @@ public class ControladorAdmin {
     public void save(@RequestBody Admin categoria) {
         servicios.save(categoria);
     }
-    
+
     @PutMapping("/update")
-    @ResponseStatus(HttpStatus.CREATED)  //Created inicializa la base de datos por cada ejecución del programa
-    public void update(@RequestBody Admin admin){
+    @ResponseStatus(HttpStatus.CREATED)
+    public void update(@RequestBody Admin admin) {
         servicios.update(admin);
     }
-    
+
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public boolean delete(@PathVariable("id") int id){  //PathVariable asigna valor de variable en la URL.
+    public boolean delete(@PathVariable("id") int id) {
         return servicios.delete(id);
     }
 }

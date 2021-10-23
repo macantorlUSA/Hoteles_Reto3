@@ -41,17 +41,17 @@ public class ControladorMessage {
     public void save(@RequestBody Message message) {
         servicios.save(message);
     }
-    
+
     @PutMapping("/update")
-    @ResponseStatus(HttpStatus.CREATED)  //Created inicializa la base de datos por cada ejecución del programa
-    public void update(@RequestBody Message message){
+    @ResponseStatus(HttpStatus.CREATED)
+    public void update(@RequestBody Message message) {
         servicios.update(message);
     }
-    
+
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public boolean delete(@PathVariable("id") int id){  //PathVariable asigna valor de variable en la URL.
+    public boolean delete(@PathVariable("id") int id) {
         return servicios.delete(id);
     }
-    
+
 }
