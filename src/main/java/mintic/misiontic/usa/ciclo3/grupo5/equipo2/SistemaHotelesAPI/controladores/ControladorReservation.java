@@ -3,6 +3,7 @@ package mintic.misiontic.usa.ciclo3.grupo5.equipo2.SistemaHotelesAPI.controlador
 import java.util.List;
 import java.util.Optional;
 import mintic.misiontic.usa.ciclo3.grupo5.equipo2.SistemaHotelesAPI.Reportes.StatusReservas;
+import mintic.misiontic.usa.ciclo3.grupo5.equipo2.SistemaHotelesAPI.modelos.Reportes.ReporteClientes;
 import mintic.misiontic.usa.ciclo3.grupo5.equipo2.SistemaHotelesAPI.modelos.Reservation;
 import mintic.misiontic.usa.ciclo3.grupo5.equipo2.SistemaHotelesAPI.servicios.ServicioReservation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,9 +55,19 @@ public class ControladorReservation {
     public boolean delete(@PathVariable("id") int id) {
         return servicios.delete(id);
     }
-    
+
     @GetMapping("/report-status")
     public StatusReservas getReservas() {
         return servicios.reporteStatusServicio();
+    }
+
+    @GetMapping("/report-dates/{startDate}/{endDate}")
+    public List<Reservation> reporteFecha(@PathVariable("startDate") String start, @PathVariable("endDate") String end) {
+        return servicios.reporteFecha(start, end);
+    }
+
+    @GetMapping("/report-clients")
+    public List<ReporteClientes> reporteClientes() {
+        return servicios.reporteClientes();
     }
 }

@@ -1,8 +1,11 @@
 package mintic.misiontic.usa.ciclo3.grupo5.equipo2.SistemaHotelesAPI.servicios;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import mintic.misiontic.usa.ciclo3.grupo5.equipo2.SistemaHotelesAPI.Reportes.StatusReservas;
+import mintic.misiontic.usa.ciclo3.grupo5.equipo2.SistemaHotelesAPI.modelos.Client;
+import mintic.misiontic.usa.ciclo3.grupo5.equipo2.SistemaHotelesAPI.modelos.Reportes.ReporteClientes;
 import mintic.misiontic.usa.ciclo3.grupo5.equipo2.SistemaHotelesAPI.modelos.Reservation;
 import mintic.misiontic.usa.ciclo3.grupo5.equipo2.SistemaHotelesAPI.repositorios.RepositorioReservation;
 
@@ -62,5 +65,18 @@ public class ServicioReservation {
         List<Reservation> completed = metodosCrud.ReservacionStatusRepositorio("completed");
         List<Reservation> cancelled = metodosCrud.ReservacionStatusRepositorio("cancelled");
         return new StatusReservas(completed.size(), cancelled.size());
+    }
+    
+    public List<Reservation> reporteFecha(String start, String end) {
+        return metodosCrud.reporteFecha(start, end);
+    }
+    
+    public List<ReporteClientes> reporteClientes() {
+        List<ReporteClientes> returnValue = new ArrayList<>();
+        for (Object reporteEstado : metodosCrud.reporteClientes()) {
+            Object[] dato = (Object[]) reporteEstado;
+            returnValue.add(new ReporteClientes(Integer.valueOf(dato[0].toString()), (Client) dato[1]));
+        }
+        return returnValue;
     }
 }

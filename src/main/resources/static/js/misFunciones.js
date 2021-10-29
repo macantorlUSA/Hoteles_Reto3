@@ -1,5 +1,5 @@
-//let urlConexion = "http://129.151.107.164:8070/api";
-let urlConexion = "http://localhost:8070/api";
+let urlConexion = "http://129.151.107.164:8070/api";
+//let urlConexion = "http://localhost:8070/api";
 let moduloCategory = "/Category";
 let moduloRoom = "/Room";
 let moduloClient = "/Client";
@@ -897,7 +897,7 @@ function generarReporte(idReporte) {
     }
     else if (idReporte === 2) {
         urlReporte = "/report-status";
-    }else if (idReporte === 3) {
+    } else if (idReporte === 3) {
         urlReporte = "/report-clients";
     }
     if (urlReporte != "") {
@@ -932,16 +932,26 @@ function crearListaReporte(panel, registros) {
 function crearHeadersReporte(tabla) {
     let headers = "<tr>";
     if (tabla === 1) {
-        headers += "<td width='34%'><strong>Nombre</strong></td>";
-        headers += "<td width='33%'><strong>Descripción</strong></td>";
+        headers += "<td width='25%'><strong>Fecha inicio</strong></td>";
+        headers += "<td width='25%'><strong>Fecha devolución</strong></td>";
+        headers += "<td width='25%'><strong>Cliente</strong></td>";
+        headers += "<td width='25%'><strong>Habitación</strong></td>";
     } else if (tabla === 2) {
         headers += "<td width='50%'><strong>Estado</strong></td>";
         headers += "<td width='50%'><strong>Número Reservas</strong></td>";
     } else if (tabla === 3) {
-        headers += "<td width='20%'><strong>E-mail</strong></td>";
-        headers += "<td width='20%'><strong>Contraseña</strong></td>";
-        headers += "<td width='20%'><strong>Nombre</strong></td>";
-        headers += "<td width='20%'><strong>Edad</strong></td>";
+        headers += "<td rowspan='2' width='12.5%'><strong>Total</strong></td>";
+        headers += "<td colspan='4'><center><strong>Cliente</strong></center></td>";
+        headers += "<td colspan='4'><center><strong>Reserva</strong></center></td>";
+        headers += "</tr>";
+        headers += "<tr>";
+        headers += "<td width='12.5%'><strong>E-mail</strong></td>";
+        headers += "<td width='12.5%'><strong>Contraseña</strong></td>";
+        headers += "<td width='12.5%'><strong>Nombre</strong></td>";
+        headers += "<td width='12.5%'><strong>Edad</strong></td>";
+        headers += "<td width='12.5%'><strong>Fecha inicio</strong></td>";
+        headers += "<td width='12.5%'><strong>Fecha devolución</strong></td>";
+        headers += "<td width='12.5%'><strong>Habitación</strong></td>";
     }
     headers += "</tr>";
     return headers;
@@ -952,10 +962,18 @@ function crearDatosReporte(tabla, datos) {
     if (tabla === 1) {
         for (i = 0; i < datos.length; i++) {
             headers += "<tr>"
-            headers += "<td>" + datos[i].name + "</td>";
-            headers += "<td>" + datos[i].description + "</td>";
-            headers += "<td><center><button class='btn btn-sm rounded-0 btn-primary' onclick='editarCategoria(" + datos[i].id + ");'>Editar</button>";
-            headers += "<button class='btn btn-sm rounded-0 btn-danger' onclick='borrarCategoria(" + datos[i].id + ");'>Borrar</button></center></td>";
+            headers += "<td>" + datos[i].startDate + "</td>";
+            headers += "<td>" + datos[i].devolutionDate + "</td>";
+            if (datos[i].client != null) {
+                headers += "<td>" + datos[i].client.name + "</td>";
+            } else {
+                headers += "<td><em>Sin Definir</em></td>";
+            }
+            if (datos[i].room != null) {
+                headers += "<td>" + datos[i].room.name + "</td>";
+            } else {
+                headers += "<td><em>Sin Definir</em></td>";
+            }
             headers += "</tr>";
         }
     } else if (tabla === 2) {
@@ -966,30 +984,24 @@ function crearDatosReporte(tabla, datos) {
         headers += "<td>Cancelados</td>";
         headers += "<td>" + datos["cancelled"] + "</td>";
         headers += "</tr>";
-        /*for (i = 0; i < datos.length; i++) {
-            headers += "<tr>"
-            headers += "<td>" + datos[i].name + "</td>";
-            headers += "<td>" + datos[i].hotel + "</td>";
-            headers += "<td>" + datos[i].stars + "</td>";
-            headers += "<td>" + datos[i].description + "</td>";
-            if (datos[i].category != null) {
-                headers += "<td>" + datos[i].category.name + "</td>";
-            } else {
-                headers += "<td><em>Sin Definir</em></td>";
-            }
-            headers += "<td><center><button class='btn btn-sm rounded-0 btn-primary' onclick='editarHabitacion(" + datos[i].id + ");'>Editar</button>";
-            headers += "<button class='btn btn-sm rounded-0 btn-danger' onclick='borrarHabitacion(" + datos[i].id + ");'>Borrar</button></center></td>";
-            
-        }*/
     } else if (tabla === 3) {
         for (i = 0; i < datos.length; i++) {
             headers += "<tr>"
-            headers += "<td>" + datos[i].email + "</td>";
-            headers += "<td>" + datos[i].password + "</td>";
-            headers += "<td>" + datos[i].name + "</td>";
-            headers += "<td>" + datos[i].age + "</td>";
-            headers += "<td><center><button class='btn btn-sm rounded-0 btn-primary' onclick='editarCliente(" + datos[i].idClient + ");'>Editar</button>";
-            headers += "<button class='btn btn-sm rounded-0 btn-danger' onclick='borrarCliente(" + datos[i].idClient + ");'>Borrar</button></center></td>";
+            headers += "<td rowspan='" + datos[i].total + "'>" + datos[i].total + "</td>";
+            headers += "<td  rowspan='" + datos[i].total + "'>" + datos[i].client.email + "</td>";
+            headers += "<td  rowspan='" + datos[i].total + "'>" + datos[i].client.password + "</td>";
+            headers += "<td  rowspan='" + datos[i].total + "'>" + datos[i].client.name + "</td>";
+            headers += "<td  rowspan='" + datos[i].total + "'>" + datos[i].client.age + "</td>";
+            for (i2 = 0; i2 < datos[i].client.reservations.length; i2++) {
+                headers += "<td>" + datos[i].client.reservations[i2].startDate + "</td>";
+                headers += "<td>" + datos[i].client.reservations[i2].devolutionDate + "</td>";
+                if (datos[i].client.reservations[i2].room != null) {
+                    headers += "<td>" + datos[i].client.reservations[i2].room.name + "</td>";
+                } else {
+                    headers += "<td><em>Sin Definir</em></td>";
+                }
+                headers += "</tr>"
+            }
             headers += "</tr>";
         }
     }
