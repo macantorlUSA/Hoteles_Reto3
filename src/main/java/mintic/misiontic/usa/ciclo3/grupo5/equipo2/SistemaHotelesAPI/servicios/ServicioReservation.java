@@ -2,6 +2,7 @@ package mintic.misiontic.usa.ciclo3.grupo5.equipo2.SistemaHotelesAPI.servicios;
 
 import java.util.List;
 import java.util.Optional;
+import mintic.misiontic.usa.ciclo3.grupo5.equipo2.SistemaHotelesAPI.Reportes.StatusReservas;
 import mintic.misiontic.usa.ciclo3.grupo5.equipo2.SistemaHotelesAPI.modelos.Reservation;
 import mintic.misiontic.usa.ciclo3.grupo5.equipo2.SistemaHotelesAPI.repositorios.RepositorioReservation;
 
@@ -55,5 +56,11 @@ public class ServicioReservation {
             return true;
         }
         return false;
+    }
+
+    public StatusReservas reporteStatusServicio() {
+        List<Reservation> completed = metodosCrud.ReservacionStatusRepositorio("completed");
+        List<Reservation> cancelled = metodosCrud.ReservacionStatusRepositorio("cancelled");
+        return new StatusReservas(completed.size(), cancelled.size());
     }
 }

@@ -1,5 +1,5 @@
-let urlConexion = "http://129.151.107.164:8080/api";
-//let urlConexion = "http://localhost:8080/api";
+//let urlConexion = "http://129.151.107.164:8070/api";
+let urlConexion = "http://localhost:8070/api";
 let moduloCategory = "/Category";
 let moduloRoom = "/Room";
 let moduloClient = "/Client";
@@ -397,7 +397,7 @@ function registrarNuevo(modulo) {
             data: JSON.stringify({
                 "name": $("#txtName").val(),
                 "stars": $("#txtStars").val(),
-                "category": {"id": $("#selCategory").val()},
+                "category": { "id": $("#selCategory").val() },
                 "hotel": $("#txtHotel").val(),
                 "description": $("#txtDescription").val()
             }),
@@ -439,8 +439,8 @@ function registrarNuevo(modulo) {
             url: urlConexion + moduloMessage + opcionSave,
             data: JSON.stringify({
                 "messageText": $("#txtMessageText").val(),
-                "client": {"idClient": $("#selClient").val()},
-                "room": {"id": $("#selRoom").val()}
+                "client": { "idClient": $("#selClient").val() },
+                "room": { "id": $("#selRoom").val() }
             }),
             type: 'POST',
             contentType: 'application/json',
@@ -460,8 +460,8 @@ function registrarNuevo(modulo) {
             data: JSON.stringify({
                 "startDate": $("#txtStartDate").val(),
                 "devolutionDate": $("#txtDevolutionDate").val(),
-                "client": {"idClient": $("#selClient").val()},
-                "room": {"id": $("#selRoom").val()}
+                "client": { "idClient": $("#selClient").val() },
+                "room": { "id": $("#selRoom").val() }
             }),
             type: 'POST',
             contentType: 'application/json',
@@ -785,7 +785,7 @@ function actualizarRegistro(modulo, id) {
                 "id": id,
                 "name": $("#txtName").val(),
                 "stars": $("#txtStars").val(),
-                "category": {"id": $("#selCategory").val()},
+                "category": { "id": $("#selCategory").val() },
                 "hotel": $("#txtHotel").val(),
                 "description": $("#txtDescription").val()
             }),
@@ -829,8 +829,8 @@ function actualizarRegistro(modulo, id) {
             data: JSON.stringify({
                 "idMessage": id,
                 "messageText": $("#txtMessageText").val(),
-                "client": {"idClient": $("#selClient").val()},
-                "room": {"id": $("#selRoom").val()}
+                "client": { "idClient": $("#selClient").val() },
+                "room": { "id": $("#selRoom").val() }
             }),
             type: 'PUT',
             contentType: 'application/json',
@@ -851,8 +851,8 @@ function actualizarRegistro(modulo, id) {
                 "idReservation": id,
                 "startDate": $("#txtStartDate").val(),
                 "devolutionDate": $("#txtDevolutionDate").val(),
-                "client": {"idClient": $("#selClient").val()},
-                "room": {"id": $("#selRoom").val()}
+                "client": { "idClient": $("#selClient").val() },
+                "room": { "id": $("#selRoom").val() }
             }),
             type: 'PUT',
             contentType: 'application/json',
@@ -878,4 +878,120 @@ function validarUsuario() {
         $(".unauthenticated").hide()
         $(".authenticated").show()
     });
+}
+
+// Reportes
+function generarReporte(idReporte) {
+    event.preventDefault();
+    let urlReporte = "";
+    if (idReporte === 1) {
+        if ($("#txtStartDate").val() === "") {
+            alert('Ingrese la fecha inicial del reporte.');
+            $("#txtStartDate").focus();
+        } else if ($("#txtEndDate").val() === "") {
+            alert('Ingrese la fecha final del reporte.');
+            $("#txtEndDate").focus();
+        } else {
+            urlReporte = "/report-dates/" + $("#txtStartDate").val() + "/" + $("#txtEndDate").val()
+        }
+    }
+    else if (idReporte === 2) {
+        urlReporte = "/report-status";
+    }else if (idReporte === 3) {
+        urlReporte = "/report-clients";
+    }
+    if (urlReporte != "") {
+        $.ajax({
+            url: urlConexion + moduloReservation + urlReporte,
+            type: 'GET',
+            dataType: 'json',
+            error: crearListaReporte(idReporte, []),
+            success: function (json) {
+                crearListaReporte(idReporte, json);
+            }
+        });
+    }
+}
+
+function crearListaReporte(panel, registros) {
+    $("#pnlReporte" + panel).empty();
+    let tblRegistros = "<table id='tblRegistros' width='100%' border='1'>";
+    if (typeof registros === 'undefined' || (typeof registros != 'undefined' && registros.length === 0)) {
+        tblRegistros += "<tr>";
+        tblRegistros += "<td colspan='5'><center><strong>No existen registros para este reporte.</strong></center></td>";
+        tblRegistros += "</tr>";
+    } else {
+        tblRegistros += crearHeadersReporte(panel);
+        tblRegistros += crearDatosReporte(panel, registros);
+    }
+    tblRegistros += "</table>";
+    $("#pnlReporte" + panel).append(tblRegistros);
+    validarUsuario();
+}
+
+function crearHeadersReporte(tabla) {
+    let headers = "<tr>";
+    if (tabla === 1) {
+        headers += "<td width='34%'><strong>Nombre</strong></td>";
+        headers += "<td width='33%'><strong>Descripción</strong></td>";
+    } else if (tabla === 2) {
+        headers += "<td width='50%'><strong>Estado</strong></td>";
+        headers += "<td width='50%'><strong>Número Reservas</strong></td>";
+    } else if (tabla === 3) {
+        headers += "<td width='20%'><strong>E-mail</strong></td>";
+        headers += "<td width='20%'><strong>Contraseña</strong></td>";
+        headers += "<td width='20%'><strong>Nombre</strong></td>";
+        headers += "<td width='20%'><strong>Edad</strong></td>";
+    }
+    headers += "</tr>";
+    return headers;
+}
+
+function crearDatosReporte(tabla, datos) {
+    let headers = "";
+    if (tabla === 1) {
+        for (i = 0; i < datos.length; i++) {
+            headers += "<tr>"
+            headers += "<td>" + datos[i].name + "</td>";
+            headers += "<td>" + datos[i].description + "</td>";
+            headers += "<td><center><button class='btn btn-sm rounded-0 btn-primary' onclick='editarCategoria(" + datos[i].id + ");'>Editar</button>";
+            headers += "<button class='btn btn-sm rounded-0 btn-danger' onclick='borrarCategoria(" + datos[i].id + ");'>Borrar</button></center></td>";
+            headers += "</tr>";
+        }
+    } else if (tabla === 2) {
+        headers += "<tr>";
+        headers += "<td>Completados</td>";
+        headers += "<td>" + datos["completed"] + "</td>";
+        headers += "</tr><tr>";
+        headers += "<td>Cancelados</td>";
+        headers += "<td>" + datos["cancelled"] + "</td>";
+        headers += "</tr>";
+        /*for (i = 0; i < datos.length; i++) {
+            headers += "<tr>"
+            headers += "<td>" + datos[i].name + "</td>";
+            headers += "<td>" + datos[i].hotel + "</td>";
+            headers += "<td>" + datos[i].stars + "</td>";
+            headers += "<td>" + datos[i].description + "</td>";
+            if (datos[i].category != null) {
+                headers += "<td>" + datos[i].category.name + "</td>";
+            } else {
+                headers += "<td><em>Sin Definir</em></td>";
+            }
+            headers += "<td><center><button class='btn btn-sm rounded-0 btn-primary' onclick='editarHabitacion(" + datos[i].id + ");'>Editar</button>";
+            headers += "<button class='btn btn-sm rounded-0 btn-danger' onclick='borrarHabitacion(" + datos[i].id + ");'>Borrar</button></center></td>";
+            
+        }*/
+    } else if (tabla === 3) {
+        for (i = 0; i < datos.length; i++) {
+            headers += "<tr>"
+            headers += "<td>" + datos[i].email + "</td>";
+            headers += "<td>" + datos[i].password + "</td>";
+            headers += "<td>" + datos[i].name + "</td>";
+            headers += "<td>" + datos[i].age + "</td>";
+            headers += "<td><center><button class='btn btn-sm rounded-0 btn-primary' onclick='editarCliente(" + datos[i].idClient + ");'>Editar</button>";
+            headers += "<button class='btn btn-sm rounded-0 btn-danger' onclick='borrarCliente(" + datos[i].idClient + ");'>Borrar</button></center></td>";
+            headers += "</tr>";
+        }
+    }
+    return headers;
 }

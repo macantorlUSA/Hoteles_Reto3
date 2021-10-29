@@ -29,4 +29,8 @@ public class RepositorioReservation {
     public void delete(Reservation message) {
         crud.delete(message);
     }
+
+    public List<Reservation> ReservacionStatusRepositorio(String status) {
+        return crud.findAllByStatus(status);
+    }
 }
